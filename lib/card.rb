@@ -1,8 +1,10 @@
 class Card
 
-  attr_reader :question
+  attr_reader :question, :answer
 
-  def initialize
-    @question = "What is the capital of Alaska?"
+  def initialize(question, answer)
+    @question = question
+    @answer   = answer
   end
+
 end
