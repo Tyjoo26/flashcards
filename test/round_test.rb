@@ -1,0 +1,58 @@
+require 'minitest/autorun'
+require 'minitest/pride'
+require './lib/deck'
+require './lib/card'
+require './lib/guess'
+require './lib/round'
+require 'pry'
+
+class RoundTest < MiniTest::Test
+
+  def test_does_it_exist
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+
+
+    assert_instance_of Round, round
+  end
+
+  def test_guesses
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+
+
+    assert_equal [], round.guesses
+  end
+
+  def test_current_card
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+
+    assert_instance_of Card, round.current_card
+  end
+
+  def test_record_guess
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+
+    assert_equal "Juneau", round.record_guess
+  end
+
+  # def test_round_guess_count
+  #   card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+  #   card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+  #   deck = Deck.new([card_1, card_2])
+  #   round = Round.new(deck)
+  #
+  #   assert_equal 1, round.guesses.count
+  # end
+
+end

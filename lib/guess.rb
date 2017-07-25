@@ -3,11 +3,11 @@ require 'pry'
 
 class Guess
 
-  attr_reader :card, :response
+  attr_reader :response, :card
 
   def initialize(response, card)
-    @card = card
     @response = response
+    @card = card
   end
 
   def correct?

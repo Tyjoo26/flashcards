@@ -8,7 +8,7 @@ require 'pry'
 class DeckTest < MiniTest::Test
 
 def test_does_it_exist?
-  deck = Deck.new("")
+  deck = Deck.new([])
 #why does it need an argument specifically an empty string?
   assert_instance_of Deck, deck
 end
