@@ -13,29 +13,51 @@ class Round
     @index = 0
   end
 
+
   def current_card
     deck.cards[@index]
   end
 
   def record_guess(response)
     @guesses << Guess.new(response, current_card)
+    @index += 1
+    @guesses.last
   end
 
-#
-#
-# record guess iteration
-#   index
-#   while index < 4
-#     if index = 0
-#       #card_1
-#     elsif index = 1
-#       #card_2
-#     #elsif index = 2
-#       #card_3
-#     #elsif index = 3
-#       #card_4
-#     @index += 1
-#   end
+  def number_correct
+    counter = 0
+    guesses.each do |guess|
+      if guess.correct? == true
+        counter += 1
+      end
+    end
+    counter
+  end
+
+  def decimal_convert_correct
+    (number_correct.to_f / guesses.count.to_f) * 100
+
+  end
+
+  def percent_correct
+    decimal_convert_correct.to_i
+  end
 
 
+  def start
+    p "Welcome! You're playing with #{deck.count} cards."
+    p "-------------------------------------------------"
+    cycle_cards
+    p "***** GAME OVER! *****"
+    p "You had #{number_correct} correct guesses out of #{guesses.count} for a score of #{percent_correct}%."
+  end
+
+  def cycle_cards
+    until deck.count == guesses.count
+      p "This is card number #{@index + 1} out of #{deck.count}"
+      p "Question: #{current_card.question}"
+      user_input = gets.chomp
+      p record_guess(user_input).feedback
+    end
+  end
 end
